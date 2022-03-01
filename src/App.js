@@ -1,25 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class Calc extends Component{
+
+  // State vem aqui
+  state = {
+    n1: '',
+    n2: '',
+    result: ''
+  }
+
+
+  handleChangeUm = (event) =>{
+    this.setState({
+      n1: event.target.value
+    })
+  }
+  handleChangeDois = (event) =>{
+    this.setState({
+      n2: event.target.value
+    })
+  }
+
+  mult = () =>{
+    const{n1, n2} = this.state
+    this.setState({
+      result: Number(n1) * Number(n2)
+    })
+  }
+  soma = () =>{
+    const{n1, n2} = this.state
+    this.setState({
+      result: Number(n1) + Number(n2)
+    })
+  }
+  sub = () =>{
+    const{n1, n2} = this.state
+    this.setState({
+      result: Number(n1) - Number(n2)
+    })
+  }
+  divisao = () =>{
+    const{n1, n2} = this.state
+    this.setState({
+      result: Number(n1) / Number(n2)
+    })
+  }
+  // lompar = () =>{
+  //   const{n1, n2, result} = this.state
+  //   this.setState({
+
+  //   })
+  // }
+
+
+
+  render(){
+    return(
+      <div className='container'>
+        <label htmlFor="numero1">Primeiro numero</label>
+        <input onChange={this.handleChangeUm} type="number" />
+        <label htmlFor="numero2">Segundo numero</label>
+        <input onChange={this.handleChangeDois} type="number" />
+
+      <button onClick={this.mult}>*</button>
+      <button onClick={this.divisao}>/</button>
+      <button onClick={this.sub}>-</button>
+      <button onClick={this.soma}>+</button>
+      <button onClick={this.limpar}>limpar</button>
+      <h2>{this.state.result}</h2>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default Calc
